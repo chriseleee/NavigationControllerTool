@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (Extension)
+//将颜色转为图片
++(UIImage*) createImageWithColor: (UIColor*) color;
 
 @end

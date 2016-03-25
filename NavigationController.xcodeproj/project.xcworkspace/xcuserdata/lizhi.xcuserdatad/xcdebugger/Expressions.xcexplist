@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[HMNavigationController pushViewController:animated:]:HMNavigationController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewController.childViewControllers.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[VideoTableViewController scrollViewDidScroll:]:VideoTableViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tableView.tableHeaderView.frame.size.height">
+            </PersistentString>
+            <PersistentString
+               value = "self.tableView.frame.origin.y">
+            </PersistentString>
+            <PersistentString
+               value = "self.tableView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[VideoTableViewController viewDidLoad]:VideoTableViewController.m">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

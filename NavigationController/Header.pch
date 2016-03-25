@@ -9,5 +9,24 @@
 #ifndef Header_h
 #define Header_h
 
+#import "UIView+Extension.h"//被masonry取代
+#import "UIBarButtonItem+Extension.h"
+#import "UIImage+Extension.h"
+#import "ASTextField.h"
+#import "QDTool.h"
+
+#define HMColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+///masonry--begin
+//define this constant if you want to use Masonry without the 'mas_' prefix
+#define MAS_SHORTHAND
+
+//define this constant if you want to enable auto-boxing for default syntax
+#define MAS_SHORTHAND_GLOBALS
+#import "Masonry.h"
+///masonry--end
+
+//block中self转为weak型
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 #endif /* Header_h */

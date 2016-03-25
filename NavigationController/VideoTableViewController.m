@@ -8,7 +8,7 @@
 
 #import "VideoTableViewController.h"
 
-@interface VideoTableViewController ()
+@interface VideoTableViewController ()<UIScrollViewDelegate>
 
 @end
 
@@ -17,12 +17,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+//    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -70, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //创建headerView
+    UIImageView *headerImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"back"]];
+    headerImage.frame = CGRectMake(0, 0, self.view.frame.size.width, 200);
+    headerImage.contentMode = UIViewContentModeScaleAspectFill;
+    headerImage.clipsToBounds = YES;
+    self.tableView.tableHeaderView =headerImage;
+    
+ 
 }
+
+//-(void)setTableView:(UITableView *)tableView{
+//    if (!tableView) {
+//        tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, -70, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
+//    }
+//    self.tableView = tableView;
+//}
+//改变tableView的frame，起始origin
+//-(void)viewDidAppear:(BOOL)animated{
+//    CGRect frame= self.tableView.frame;
+//    frame.origin.y = -64;
+//    frame.size.height +=64;
+//    self.tableView.frame = frame;
+//}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -32,24 +52,37 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return 15;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:1 reuseIdentifier:@"cell"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
     
     // Configure the cell...
     
     return cell;
 }
-*/
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat y = scrollView.contentOffset.y;
+    CGFloat target = self.tableView.tableHeaderView.frame.size.height-64-64;
+
+    if (y> target) {
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage createImageWithColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:(y-target)/44]] forBarMetrics:UIBarMetricsDefault];
+    }
+    else{
+        UIImage *barImage = [UIImage imageNamed:@"trans"];
+        [self.navigationController.navigationBar setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
+    }
+   
+}
+
 
 /*
 // Override to support conditional editing of the table view.

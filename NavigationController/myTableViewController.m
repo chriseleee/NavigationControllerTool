@@ -17,11 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,23 +29,37 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 0;
+    return 25;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCell"];
     
-    // Configure the cell...
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:1 reuseIdentifier:@"MyCell"];
+                
+    }
+    cell.backgroundColor = [UIColor cyanColor];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",indexPath.section];
     
     return cell;
 }
-*/
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+       UIViewController* v =[[UIViewController alloc]init];
+    v.view.backgroundColor = [UIColor redColor];
+    v.title = @"透明的NavigationBar";
+    [self.navigationController pushViewController:v animated:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.

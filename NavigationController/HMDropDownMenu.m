@@ -24,7 +24,7 @@
     if (!_containerView) {
         // 添加一个灰色图片控件
         UIImageView *containerView = [[UIImageView alloc] init];
-        containerView.image = [UIImage imageNamed:@"popover_background"];
+        
          // 开启交互
         [self addSubview:containerView];
         self.containerView = containerView;
@@ -53,8 +53,14 @@
     _content = content;
     
     //调整内容的位置
-    content.x  = 10;
-    content.y  = 15;
+//    content.x  = 10;
+//    content.y  = 15;
+    
+    
+    [content makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.containerView.left).offset(10);
+        make.top.equalTo(self.containerView.top).offset(15);
+    }];
    
     //设置灰色的高度、宽度
     self.containerView.height = CGRectGetMaxY(content.frame) + 11;
@@ -79,7 +85,7 @@
     [window addSubview:self];
     
     self.frame = window.bounds;
-    
+    self.containerView.image = [UIImage imageNamed:@"popover_background"];
     //获取from的坐标
     CGRect newFrame = [from convertRect:from.bounds toView:window];
     self.containerView.centerX = CGRectGetMidX(newFrame);
@@ -91,6 +97,28 @@
     }
     
 }
+
+-(void)showRightFrom:(UIView *)from{
+    // 1.获得最上面的窗口
+    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
+    
+    // 2.添加自己到窗口上
+    [window addSubview:self];
+    
+    self.frame = window.bounds;
+    self.containerView.image = [UIImage imageNamed:@"popover_background_right"];
+    //获取from的坐标
+    CGRect newFrame = [from convertRect:from.bounds toView:window];
+    self.containerView.centerX = CGRectGetMidX(newFrame);
+    self.containerView.y = CGRectGetMaxY(newFrame);
+    
+    //通知外界显示了
+    if ([self.delegate respondsToSelector:@selector(dropDownMenuDidShow:)]) {
+        [self.delegate dropDownMenuDidShow:self];
+    }
+    
+}
+
 
 /**
  *  销毁

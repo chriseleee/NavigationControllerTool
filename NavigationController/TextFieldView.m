@@ -117,6 +117,7 @@
     } completion:nil];
         [window layoutIfNeeded];
 }
+
 - (void)openKeyboard:(NSNotification *)notification{
     NSLog(@"keyboarInfo %@", notification.userInfo);
     //获取键盘弹起后的frame, 转化为CGRect类型

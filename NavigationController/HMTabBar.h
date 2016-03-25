@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HMTabBar : UITabBar
+@class HMTabBar;
 
+@protocol HMTabBarDelegate<UITabBarDelegate>
+
+@optional
+-(void)tabBarDidClickPlusButton:(HMTabBar*)tabBar;
+
+@end
+
+@interface HMTabBar : UITabBar
+@property(nonatomic,strong) id<HMTabBarDelegate> barDelegate;
 @end
